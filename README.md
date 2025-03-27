@@ -2,9 +2,13 @@
 
 A simple React application for user management with authentication. Built using modern web technologies and a clean user interface.
 
-![Login Screenshot](screenshots/Login.jpeg)
-![Users Screenshot](screenshots/Users.jpeg)
-![Edit User Screenshot](screenshots/EditUser.jpeg)
+**Production URL:** [https://req-res-assignment-deploy.vercel.app/](https://req-res-assignment-deploy.vercel.app/)
+
+Click on the screenshots below to view the deployed application:
+
+[![Login Screenshot](screenshots/Login.jpeg)](https://req-res-assignment-deploy.vercel.app/)
+[![Users Screenshot](screenshots/Users.jpeg)](https://req-res-assignment-deploy.vercel.app/)
+[![Edit User Screenshot](screenshots/EditUser.jpeg)](https://req-res-assignment-deploy.vercel.app/)
 
 ## Features
 
