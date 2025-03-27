@@ -38,10 +38,12 @@ npm install
 npm run dev
 ```
 4. Open http://localhost:5173 in your browser
-### Login Credentials
-#### Use these credentials to test the application:
+
+## Login Credentials
+
+Use these credentials to test the application:
 - Email: eve.holt@reqres.in
 - Password: cityslicka
 
 ## API
-#### This project uses the ReqRes API for demonstration purposes.
+This project uses the ReqRes API for demonstration purposes.
