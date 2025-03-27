@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getToken } from './auth'
+import { getToken } from './authApi'
 
 const API_URL = 'https://reqres.in/api'
 

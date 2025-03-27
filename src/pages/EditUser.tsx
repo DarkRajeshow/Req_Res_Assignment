@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
-import { getUserById, updateUser, User } from '@/lib/api'
+import { getUserById, updateUser, User } from '@/lib/usersApi'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {

@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Checkbox } from '@/components/ui/checkbox'
-import { login } from '../lib/auth'
+import { login } from '../lib/authApi'
 
 export default function Login() {
     const navigate = useNavigate()
