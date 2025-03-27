@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
-import { getUserById, updateUser } from '@/lib/api'
+import { getUserById, updateUser, User } from '@/lib/api'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
@@ -31,11 +31,11 @@ export default function EditUser() {
 
     const mutation = useMutation({
         mutationFn: (formData: FormData) => {
-            const data = {
-                first_name: formData.get('first_name'),
-                last_name: formData.get('last_name'),
-                email: formData.get('email'),
-                profile_picture: formData.get('profile_picture'),
+            const data: Partial<User> = {
+                first_name: formData.get('first_name') as string,
+                last_name: formData.get('last_name') as string,
+                email: formData.get('email') as string,
+                avatar: formData.get('profile_picture') as string,
             }
             return updateUser(Number(id), data)
         },
@@ -67,37 +67,37 @@ export default function EditUser() {
 
     if (isLoading) {
         return (
-            <div className="container mx-auto py-8">
+            <div className="container mx-auto p-4 sm:py-8">
                 <Card>
                     <CardHeader>
-                        <div className="flex items-center gap-4">
-                            <Skeleton className="h-8 w-8 rounded-full" />
-                            <Skeleton className="h-6 w-1/3" />
+                        <div className="flex items-center gap-2 sm:gap-4">
+                            <Skeleton className="h-6 w-6 sm:h-8 sm:w-8 rounded-full" />
+                            <Skeleton className="h-5 sm:h-6 w-1/3" />
                         </div>
                     </CardHeader>
                     <CardContent>
-                        <div className="flex items-center gap-4 mb-6">
-                            <Skeleton className="h-16 w-16 rounded-full" />
-                            <div className="flex flex-col gap-2 w-full">
-                                <Skeleton className="h-5 w-1/2" />
-                                <Skeleton className="h-10 w-full" />
+                        <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                            <Skeleton className="h-12 w-12 sm:h-16 sm:w-16 rounded-full" />
+                            <div className="flex flex-col gap-1.5 sm:gap-2 w-full">
+                                <Skeleton className="h-4 sm:h-5 w-1/2" />
+                                <Skeleton className="h-8 sm:h-10 w-full" />
                             </div>
                         </div>
-                        <div className="space-y-4">
-                            <Skeleton className="h-5 w-1/4" />
-                            <Skeleton className="h-10 w-full" />
+                        <div className="space-y-3 sm:space-y-4">
+                            <Skeleton className="h-4 sm:h-5 w-1/4" />
+                            <Skeleton className="h-8 sm:h-10 w-full" />
                         </div>
-                        <div className="space-y-4 mt-4">
-                            <Skeleton className="h-5 w-1/4" />
-                            <Skeleton className="h-10 w-full" />
+                        <div className="space-y-3 sm:space-y-4 mt-3 sm:mt-4">
+                            <Skeleton className="h-4 sm:h-5 w-1/4" />
+                            <Skeleton className="h-8 sm:h-10 w-full" />
                         </div>
-                        <div className="space-y-4 mt-4">
-                            <Skeleton className="h-5 w-1/4" />
-                            <Skeleton className="h-10 w-full" />
+                        <div className="space-y-3 sm:space-y-4 mt-3 sm:mt-4">
+                            <Skeleton className="h-4 sm:h-5 w-1/4" />
+                            <Skeleton className="h-8 sm:h-10 w-full" />
                         </div>
-                        <div className="flex gap-2 mt-6">
-                            <Skeleton className="h-10 w-24" />
-                            <Skeleton className="h-10 w-32" />
+                        <div className="flex gap-2 mt-4 sm:mt-6">
+                            <Skeleton className="h-8 sm:h-10 w-20 sm:w-24" />
+                            <Skeleton className="h-8 sm:h-10 w-28 sm:w-32" />
                         </div>
                     </CardContent>
                 </Card>
@@ -106,60 +106,64 @@ export default function EditUser() {
     }
 
     return (
-        <div className="container mx-auto py-8">
+        <div className="container mx-auto p-4 sm:py-8">
             <Card>
                 <CardHeader>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2 sm:gap-4">
                         <Button
                             variant="ghost"
                             size="icon"
                             onClick={() => navigate('/users')}
+                            className="h-8 w-8 sm:h-10 sm:w-10"
                         >
-                            <ArrowLeft className="h-4 w-4" />
+                            <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
                         </Button>
-                        <CardTitle>Edit User</CardTitle>
+                        <CardTitle className="text-lg sm:text-xl">Edit User</CardTitle>
                     </div>
                 </CardHeader>
                 <CardContent>
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="flex items-center gap-4">
-                            <Avatar className="h-16 w-16">
+                    <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+                            <Avatar className="h-12 w-12 sm:h-16 sm:w-16">
                                 <AvatarImage src={previewImage || userData.avatar || ''} alt="Profile Picture" />
                                 <AvatarFallback>{userData.first_name?.[0]}{userData.last_name?.[0]}</AvatarFallback>
                             </Avatar>
-                            <div className='gap-1.5 flex flex-col'>
-                                <Label htmlFor="profile_picture">Profile Picture</Label>
+                            <div className='gap-1.5 flex flex-col w-full'>
+                                <Label htmlFor="profile_picture" className="text-sm sm:text-base">Profile Picture</Label>
                                 <Input
                                     id="profile_picture"
                                     name="profile_picture"
                                     type="file"
                                     accept="image/*"
                                     onChange={handleImageChange}
+                                    className="h-8 sm:h-10 text-sm sm:text-base"
                                 />
                             </div>
                         </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="first_name">First Name</Label>
+                        <div className="space-y-1.5 sm:space-y-2">
+                            <Label htmlFor="first_name" className="text-sm sm:text-base">First Name</Label>
                             <Input
                                 id="first_name"
                                 name="first_name"
                                 placeholder="First Name"
                                 defaultValue={userData.first_name}
                                 required
+                                className="h-8 sm:h-10 text-sm sm:text-base"
                             />
                         </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="last_name">Last Name</Label>
+                        <div className="space-y-1.5 sm:space-y-2">
+                            <Label htmlFor="last_name" className="text-sm sm:text-base">Last Name</Label>
                             <Input
                                 id="last_name"
                                 name="last_name"
                                 placeholder="Last Name"
                                 defaultValue={userData.last_name}
                                 required
+                                className="h-8 sm:h-10 text-sm sm:text-base"
                             />
                         </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="email">Email</Label>
+                        <div className="space-y-1.5 sm:space-y-2">
+                            <Label htmlFor="email" className="text-sm sm:text-base">Email</Label>
                             <Input
                                 id="email"
                                 name="email"
@@ -167,18 +171,29 @@ export default function EditUser() {
                                 placeholder="Email"
                                 defaultValue={userData.email}
                                 required
+                                className="h-8 sm:h-10 text-sm sm:text-base"
                             />
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 sm:gap-3 pt-2">
                             <Button
                                 type="button"
                                 variant="outline"
                                 onClick={() => navigate('/users')}
+                                className="h-8 sm:h-10 text-sm sm:text-base"
                             >
                                 Cancel
                             </Button>
-                            <Button type="submit" disabled={mutation.isPending}>
-                                {mutation.isPending ?  <span className='flex items-center justify-center gap-3'>Saving... <Loader2 className="animate-spin" /></span> : 'Save Changes'}
+                            <Button
+                                type="submit"
+                                disabled={mutation.isPending}
+                                className="h-8 sm:h-10 text-sm sm:text-base"
+                            >
+                                {mutation.isPending ? (
+                                    <span className='flex items-center justify-center gap-2 sm:gap-3'>
+                                        Saving...
+                                        <Loader2 className="animate-spin h-4 w-4 sm:h-5 sm:w-5" />
+                                    </span>
+                                ) : 'Save Changes'}
                             </Button>
                         </div>
                     </form>

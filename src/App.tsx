@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Login from './pages/Login'
 import Users from './pages/Users'
 import EditUser from './pages/EditUser'
-import ProtectedRoute from './components/protectedRoute'
+import ProtectedRoute from './components/special/protectedRoute'
 
 const queryClient = new QueryClient()
 

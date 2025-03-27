@@ -29,7 +29,7 @@ export default function Login() {
                 icon: '👋',
             })
             navigate('/users')
-        } catch (error) {
+        } catch {
             toast.error('Login failed. Please check your credentials.')
         } finally {
             setLoading(false)
@@ -80,8 +80,8 @@ export default function Login() {
                                     onClick={() => setShowPassword(!showPassword)}
                                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
                                 >
-                                    {showPassword ? 
-                                        <EyeOff className='size-4 sm:size-5' /> : 
+                                    {showPassword ?
+                                        <EyeOff className='size-4 sm:size-5' /> :
                                         <Eye className='size-4 sm:size-5' />
                                     }
                                 </button>
@@ -96,14 +96,14 @@ export default function Login() {
                             />
                             <Label htmlFor="rememberMe" className="text-sm sm:text-base">Remember me</Label>
                         </div>
-                        <Button 
-                            type="submit" 
-                            className="w-full h-9 sm:h-10 text-sm sm:text-base" 
+                        <Button
+                            type="submit"
+                            className="w-full h-9 sm:h-10 text-sm sm:text-base"
                             disabled={loading}
                         >
                             {loading ? (
                                 <span className='flex items-center justify-center gap-2 sm:gap-3'>
-                                    working on... 
+                                    working on...
                                     <Loader2 className="animate-spin size-4 sm:size-5" />
                                 </span>
                             ) : 'Login'}
